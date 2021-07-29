@@ -11,4 +11,9 @@
       <PackageReference Include="IDoEverything.DSharpPlus.SlashCommands" Version="1.7.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include=".github\workflows\build-image.yml" />
+      <Content Include="LICENSE" />
+    </ItemGroup>
+
 </Project>
