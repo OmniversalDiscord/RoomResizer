@@ -4,6 +4,7 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["RoomResizer.csproj", "./"]
+RUN dotnet nuget add source "https://nuget.emzi0767.com/api/v3/index.json" --name "DSharpPlus SlimGet"
 RUN dotnet restore "RoomResizer.csproj"
 COPY . .
 WORKDIR "/src/"
