@@ -9,10 +9,9 @@ namespace RoomResizer
 {
     public class Commands : SlashCommandModule
     {
-        [SlashCommand("loungesize", "Sets the user limit for lounge")]
-        public async Task Resize(InteractionContext ctx, [Option("size", "The new lounge size")] long size)
+        private async Task Resize(InteractionContext ctx, long size, ulong channelId)
         {
-            var lounge = await ctx.Client.GetChannelAsync(ulong.Parse(Environment.GetEnvironmentVariable("LOUNGE_ID")));
+            var lounge = await ctx.Client.GetChannelAsync(channelId);
             var member = ctx.Member;
             var isAdmin = member.Roles.Any(r => r.Name == "Coffee Crew");
             var isConnected = member.VoiceState != null && member.VoiceState.Channel.Id == lounge.Id;
@@ -39,6 +38,18 @@ namespace RoomResizer
             await lounge.ModifyAsync(model => model.Userlimit = (int) size);
             await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
                 new DiscordInteractionResponseBuilder().WithContent($"Resized the lounge limit to {size} user{(size == 1 ? "" : "s")}!"));
+        }
+
+        [SlashCommand("loungesize", "Sets the user limit for lounge")]
+        public async Task ResizeLounge(InteractionContext ctx, [Option("size", "The new lounge size")] long size)
+        {
+            await Resize(ctx, size, ulong.Parse(Environment.GetEnvironmentVariable("LOUNGE_ID")));
+        }
+
+        [SlashCommand("gamingsize", "Sets the user limit for gaming")]
+        public async Task ResizeLounge(InteractionContext ctx, [Option("size", "The new gaming size")] long size)
+        {
+            await Resize(ctx, size, ulong.Parse(Environment.GetEnvironmentVariable("GAMING_ID")));
         }
     }
 }
