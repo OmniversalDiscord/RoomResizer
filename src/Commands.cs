@@ -47,7 +47,7 @@ namespace RoomResizer
         }
 
         [SlashCommand("gamingsize", "Sets the user limit for gaming")]
-        public async Task ResizeLounge(InteractionContext ctx, [Option("size", "The new gaming size")] long size)
+        public async Task ResizeGaming(InteractionContext ctx, [Option("size", "The new gaming size")] long size)
         {
             await Resize(ctx, size, ulong.Parse(Environment.GetEnvironmentVariable("GAMING_ID")));
         }
