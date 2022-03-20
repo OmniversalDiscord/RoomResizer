@@ -37,7 +37,7 @@ namespace RoomResizer
 
             await lounge.ModifyAsync(model => model.Userlimit = (int) size);
             await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                new DiscordInteractionResponseBuilder().WithContent($"Resized the lounge limit to {size} user{(size == 1 ? "" : "s")}!"));
+                new DiscordInteractionResponseBuilder().WithContent($"Resized the specified vc limit to {size} user{(size == 1 ? "" : "s")}!"));
         }
 
         [SlashCommand("loungesize", "Sets the user limit for lounge")]
