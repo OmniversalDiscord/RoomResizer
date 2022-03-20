@@ -21,7 +21,7 @@ namespace RoomResizer
                 await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
                     new DiscordInteractionResponseBuilder()
                         .AsEphemeral(true)
-                        .WithContent("You must be connected to lounge in order to change its size!"));
+                        .WithContent("You must be connected the specified vc in order to change its size!"));
                 return;
             }
 
@@ -50,6 +50,12 @@ namespace RoomResizer
         public async Task ResizeGaming(InteractionContext ctx, [Option("size", "The new gaming size")] long size)
         {
             await Resize(ctx, size, ulong.Parse(Environment.GetEnvironmentVariable("GAMING_ID")));
+        }
+
+        [SlashCommand("bingsize", "Sets the user limit for lounge")]
+        public async Task ResizeBing(InteractionContext ctx, [Option("size", "The new Bing Chilling size")] long size)
+        {
+            await Resize(ctx, size, ulong.Parse(Environment.GetEnvironmentVariable("BING_CHILLING")));
         }
     }
 }
