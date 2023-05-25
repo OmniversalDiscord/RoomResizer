@@ -53,9 +53,9 @@ namespace RoomResizer
         }
 
         [SlashCommand("bingsize", "Sets the user limit for lounge")]
-        public async Task ResizeBing(InteractionContext ctx, [Option("size", "The new Bing Chilling size")] long size)
+        public async Task ResizeBing(InteractionContext ctx, [Option("size", "The new Chill size")] long size)
         {
-            await Resize(ctx, size, ulong.Parse(Environment.GetEnvironmentVariable("BING_CHILLING")));
+            await Resize(ctx, size, ulong.Parse(Environment.GetEnvironmentVariable("CHILL_ID")));
         }
     }
 }
